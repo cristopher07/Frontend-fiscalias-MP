@@ -6,8 +6,6 @@ import { useToasts } from "react-toast-notifications";
 import { Guatemala } from "../const/Guatemala";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { IconButton } from "@mui/material";
 
 export const AddFiscalia = () => {
   let navigate = useNavigate();
@@ -28,7 +26,6 @@ export const AddFiscalia = () => {
   const [towns, setTown] = useState([]);
   const { addToast } = useToasts();
 
-  //
   useEffect(() => {
     let data = [];
     for (let depto in Guatemala) {
@@ -45,7 +42,6 @@ export const AddFiscalia = () => {
     setFiscalia({ ...fiscalia, [name]: value });
   };
 
-  //
   const handleSelectChange = async (event) => {
     const { name, value } = event.target;
     setFiscalia({ ...fiscalia, [name]: value });
@@ -100,7 +96,6 @@ export const AddFiscalia = () => {
         alignContent: "center",
         justifyItems: "center",
         margin: "auto",
-        
       }}
     >
       <Paper
@@ -109,29 +104,32 @@ export const AddFiscalia = () => {
           alignSelf: "center",
           margin: "3%",
           width: "90%",
-          backgroundColor: "#f5f5f5",
+         
         }}
       >
-        <div style={{marginTop: "15%"}}>
+        <div style={{ marginTop: "15%" }}>
           <br />
-          <h4 style={{
-            width: "100%",
-            textAlign: "center",
-                       
-          }}>Crear Fiscalía</h4>
+          <h4
+            style={{
+              width: "100%",
+              textAlign: "center",
+            }}
+          >
+            Crear Fiscalía
+          </h4>
         </div>
         <Grid container style={{ padding: "2%" }} spacing={3}>
           <Grid item xs={6}>
-              <label htmlFor="title">Agencia</label>
-              <input
-                type="text"
-                className="form-control"
-                id="agencia"
-                required
-                value={fiscalia.agencia}
-                onChange={handleInputChange}
-                name="agencia"
-              />
+            <label htmlFor="title">Agencia</label>
+            <input
+              type="text"
+              className="form-control"
+              id="agencia"
+              required
+              value={fiscalia.agencia}
+              onChange={handleInputChange}
+              name="agencia"
+            />
           </Grid>
 
           <Grid item xs={6}>
@@ -148,33 +146,30 @@ export const AddFiscalia = () => {
           </Grid>
 
           <Grid item xs={6}>
-            <div >
-            <label>Tipo:</label>
-            <div >
-            <select 
-              className="form-control"
-              name="tipo"
-              value={fiscalia.tipo}
-              onChange={handleInputChange}
-              required
-            >
-              <option value="">  
-              Selecciona una opción... 
-              </option>
-              <option key={1} value={"Seccion"}>
-                Seccion
-              </option>
-              <option key={2} value={"Municipal"}>
-                Municipal
-              </option>
-              <option key={3} value={"Distrital"}>
-                Distrital
-              </option>
-            </select>
+            <div>
+              <label>Tipo:</label>
+              <div>
+                <select
+                  className="form-control"
+                  name="tipo"
+                  value={fiscalia.tipo}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Selecciona una opción...</option>
+                  <option key={1} value={"Seccion"}>
+                    Seccion
+                  </option>
+                  <option key={2} value={"Municipal"}>
+                    Municipal
+                  </option>
+                  <option key={3} value={"Distrital"}>
+                    Distrital
+                  </option>
+                </select>
+              </div>
             </div>
-            
-            </div>
-        </Grid>
+          </Grid>
 
           <Grid item xs={6} style={{ justifyContent: "center" }}>
             <div className="form-group">
@@ -194,25 +189,23 @@ export const AddFiscalia = () => {
           <Grid item xs={6}>
             <label htmlFor="title">Departamento </label>
             <div style={{ width: "100%" }} className="col-md-6">
-           <select
+              <select
                 className="form-control"
                 name="departamento"
                 value={fiscalia.departamento}
                 onChange={handleSelectChange}
                 required
-              > 
+              >
                 <option value=""> Selecciona una opción... </option>
                 {deptos.map((depto) => (
                   <option key={depto.id} value={depto.id}>
                     {depto.value}
                   </option>
                 ))}
-            
               </select>
-              
             </div>
           </Grid>
-         
+
           <Grid item xs={6}>
             <div style={{ width: "100%" }} className="col-md-6">
               <label>Municipio</label>
@@ -224,7 +217,6 @@ export const AddFiscalia = () => {
                 multiple={false}
                 required
               >
-                
                 <option value="">Selecciona una opción...</option>
                 {towns.map((town) => (
                   <option key={town} value={town}>
@@ -234,11 +226,7 @@ export const AddFiscalia = () => {
               </select>
             </div>
           </Grid>
-
-        
-
           <Grid item xs={8} style={{ justifyContent: "center" }}></Grid>
-
           <Grid item xs={4} style={{ justifyContent: "center" }}>
             <button
               onClick={saveFiscalia}

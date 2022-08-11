@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route, Link , useNavigate} from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -9,9 +9,9 @@ import { Fiscalia } from "./Components/Fiscalia";
 import { Login } from "./Components/Login";
 import Cookies from "universal-cookie";
 import { isObjEmpty } from "./utils/utils";
+import images from "./assets/images.jpg";
 
 function App() {
-
   const cookies = new Cookies();
   let navigate = useNavigate();
 
@@ -25,7 +25,6 @@ function App() {
     cookies.remove("password", { path: "/" });
     navigate("/");
     window.location.reload(false);
-
   };
 
   useEffect(() => {
@@ -36,46 +35,48 @@ function App() {
 
   return (
     <div className="App">
-      <nav  className="navbar navbar-expand navbar-dark bg-dark" >
-        <div className="navbar-nav mr-auto" style={{ width: "150%"}} >
-          
-          {isObjEmpty(cookies.getAll())? (
-            <li to={"/"} className="navbar-brand" style={{marginLeft:"1%"}}>
+      <nav className="navbar navbar-expand navbar-dark ">
+        <div className="navbar-nav mr-auto" style={{ width: "150%" }}>
+          {isObjEmpty(cookies.getAll()) ? (
+            <li to={"/"} className="navbar-brand" style={{ marginLeft: "1%" }}>
               Login
             </li>
           ) : (
-            < >
-           
-           <div className="navbar-nav mr-auto"  style={{width: "100%", height: "100%", }}>
-           <a href="/fiscalias" className="navbar-brand">
-                Ministerio Público
-              </a>
-              <li className="nav-item">
-                <Link to={"/fiscalias"} className="nav-link">
-                  Fiscalias
-                </Link>
-              </li>
-              <li className="nav-item"
+            <>
+              <div
+                className="navbar-nav mr-auto"
+                style={{ width: "100%", height: "100%", marginLeft: "1%" }}
               >
-                <Link to={"/agregar"} className="nav-link">
-                  Agregar
-                </Link>
-              </li>
-           </div>
-           
-
-            
-              <div className="container" style={{width: "40%", height: "100%",
-              justifySelf: "center" }}>
-              <button style={{ fontSize: "white", color: "white", }}
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={() => cerrarSesion()}
-              >
-                Cerrar Sesión
-              </button>
+               
+              
+                <a href="/fiscalias" className="navbar-brand">
+                  Ministerio Público
+                </a>
+                <li className="nav-item">
+                  <Link to={"/fiscalias"} className="nav-link">
+                    Fiscalias
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/agregar"} className="nav-link">
+                    Agregar
+                  </Link>
+                </li>
               </div>
-            
+
+              <div
+                className="container"
+                style={{ width: "40%", height: "100%", justifySelf: "center" }}
+              >
+                <button
+                  style={{ fontSize: "white", color: "white" }}
+                  className="btn btn-outline-secondary"
+                  type="button"
+                  onClick={() => cerrarSesion()}
+                >
+                  Cerrar Sesión
+                </button>
+              </div>
             </>
           )}
         </div>

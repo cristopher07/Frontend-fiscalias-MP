@@ -112,7 +112,7 @@ export const Fiscalia = (props) => {
           alignSelf: "center",
           margin: "3%",
           width: "90%",
-          backgroundColor: "#f5f5f5",
+         
         }}
       >
         <div style={{ marginTop: "15%" }}>
@@ -157,8 +157,8 @@ export const Fiscalia = (props) => {
           </Grid>
 
           <Grid item xs={6}>
-            <label htmlFor="title">Departamento</label>
             <div style={{ width: "100%" }} className="col-md-6">
+            <label htmlFor="title">Departamento</label>
               <select
                 className="form-control"
                 name="departamento"
