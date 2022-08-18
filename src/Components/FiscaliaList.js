@@ -11,11 +11,9 @@ import Doc from "./Doc";
 import { useToasts } from "react-toast-notifications";
 
 export const FiscaliaList = () => {
-
   const [fiscalias, setFiscalias] = useState([]);
-  const [currentFiscalia, setCurrentFiscalia] = useState(null);
   const [searchAgencia, setSearchAgencia] = useState("");
-  const { addToast } = useToasts(); 
+  const { addToast } = useToasts();
 
   useEffect(() => {
     retrieveFiscalias();
@@ -30,7 +28,7 @@ export const FiscaliaList = () => {
     FiscaliaService.getAll()
       .then((response) => {
         setFiscalias(response.data);
-        // console.log(response.data);
+
       })
       .catch((e) => {
         console.log(e);
@@ -39,7 +37,6 @@ export const FiscaliaList = () => {
 
   const refreshData = () => {
     retrieveFiscalias();
-    setCurrentFiscalia(null);
   };
 
   const removeAllFiscalias = () => {
@@ -49,31 +46,28 @@ export const FiscaliaList = () => {
         refreshData();
         addToast("La información se ha eliminado correctamente.", {
           appearance: "error",
-          autoDismiss: true,});
+          autoDismiss: true,
+        });
       })
       .catch((e) => {
         console.log(e);
-        
       });
   };
 
   const findByAgencia = () => {
-     if(searchAgencia.length >0 ){
-    FiscaliaService.findByAgencia(searchAgencia)
-      .then((response) => {
-        setFiscalias(response.data);
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-    }
-    else{
+    if (searchAgencia.length > 0) {
+      FiscaliaService.findByAgencia(searchAgencia)
+        .then((response) => {
+          setFiscalias(response.data);
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else {
       retrieveFiscalias();
     }
   };
-
-console.log("todas las fiscalias",fiscalias);
 
   const columns = [
     {
@@ -152,49 +146,45 @@ console.log("todas las fiscalias",fiscalias);
 
   return (
     <div>
-      <div style={{
-            display: "flex",
-            justifyContent: "space-between",
-            height: "100%",
-            width: "90%",
-          }} 
-      className="col-md-8">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          height: "100%",
+          width: "90%",
+        }}
+        className="col-md-8"
+      >
         <div className="input-group mb-3">
-          <input style={{
-            marginRight: "10px",
-          }}
+          <input
+            style={{
+              marginRight: "10px",
+            }}
             type="text"
             className="form-control"
             placeholder="Buscar por agencia"
             value={searchAgencia}
             onChange={onChangeSearchAgencia}
           />
-          
-          <div 
-          className="input-group-append">
-           
-            <IconButton
-          style={{ marginLeft: "1%" }}
-          onClick={findByAgencia}
-          aria-label="search"
-        >
-          <SearchIcon style={{ color: "#000F8C" }} />
-        </IconButton>
 
+          <div className="input-group-append">
+            <IconButton
+              style={{ marginLeft: "1%" }}
+              onClick={findByAgencia}
+              aria-label="search"
+            >
+              <SearchIcon style={{ color: "#000F8C" }} />
+            </IconButton>
           </div>
 
           <PDFDownloadLink
-          document={<Doc fiscalias={fiscalias} />}
-          fileName={"Reportes-Fiscalias"}
-        >
-          <IconButton
-            style={{ marginLeft: "1%" }}
-            aria-label="print"
+            document={<Doc fiscalias={fiscalias} />}
+            fileName={"Reportes-Fiscalias"}
           >
-            <PrintIcon style={{ color:"#000F8C" }} />
-          </IconButton>
-        </PDFDownloadLink>
-        
+            <IconButton style={{ marginLeft: "1%" }} aria-label="print">
+              <PrintIcon style={{ color: "#000F8C" }} />
+            </IconButton>
+          </PDFDownloadLink>
         </div>
       </div>
 
@@ -229,7 +219,7 @@ console.log("todas las fiscalias",fiscalias);
           />
         </div>
         {fiscalias.length === 0 ? (
-          <></>
+        <></>  
         ) : (
           <div>
             <button

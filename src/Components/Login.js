@@ -8,8 +8,6 @@ import axios from "axios";
 
 export function Login() {
   let navigate = useNavigate();
-
-  //almacenar lo que el usuario vaya escribiendo
   const [form, setForm] = useState({
     username: "",
     password: "",
@@ -26,7 +24,7 @@ export function Login() {
     });
   };
 
-  const iniciarSesion = async (url) => {
+  const iniciarSesion = async () => {
     await axios
       .get(baseUrl + `/${form.username}/${md5(form.password)}`)
       .then((response) => {
@@ -36,12 +34,8 @@ export function Login() {
         if (response.length > 0) {
           let respuesta = response[0];
           cookies.set("id", respuesta.id, { path: "/" });
-          cookies.set("apellido_paterno", respuesta.apellido_paterno, {
-            path: "/",
-          });
-          cookies.set("apellido_materno", respuesta.apellido_materno, {
-            path: "/",
-          });
+          cookies.set("apellido_paterno", respuesta.apellido_paterno, { path: "/",  });
+          cookies.set("apellido_materno", respuesta.apellido_materno, { path: "/", });
           cookies.set("nombre", respuesta.nombre, { path: "/" });
           cookies.set("correo", respuesta.correo, { path: "/" });
           cookies.set("username", respuesta.username, { path: "/" });

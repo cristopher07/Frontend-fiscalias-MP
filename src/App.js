@@ -9,7 +9,7 @@ import { Fiscalia } from "./Components/Fiscalia";
 import { Login } from "./Components/Login";
 import Cookies from "universal-cookie";
 import { isObjEmpty } from "./utils/utils";
-import images from "./assets/images.jpg";
+
 
 function App() {
   const cookies = new Cookies();

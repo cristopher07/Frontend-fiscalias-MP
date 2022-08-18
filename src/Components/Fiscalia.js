@@ -17,7 +17,7 @@ const initialFiscaliaState = {
   datetime: "",
 };
 
-export const Fiscalia = (props) => {
+export const Fiscalia = () => {
   const [currentFiscalia, setCurrentFiscalia] = useState(initialFiscaliaState);
   const [deptos, setDepto] = useState([]);
   const [towns, setTown] = useState([]);
@@ -25,7 +25,7 @@ export const Fiscalia = (props) => {
 
   const { id } = useParams();
   let navigate = useNavigate();
-  //
+  
   useEffect(() => {
     let data = [];
     for (let depto in Guatemala) {
